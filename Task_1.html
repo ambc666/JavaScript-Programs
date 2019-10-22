@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Craig Rodgers">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Task 1</title>
+    <style>
+        * {
+            box-sizing: content-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrapper {
+            width: 500px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: #66A9F4;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 30px;
+        }
+
+        #outputForm {
+            width: 500px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: #66A9F4;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+        }
+
+        .text {
+            margin-top: 10px;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .textBoxes {
+            width: auto;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 25px;
+        }
+
+        .boxes {
+            width: 95%;
+            box-sizing: border-box;
+            text-align: center;
+            border: 1px solid #000;
+            padding: 3px;
+        }
+
+        .vatForm {
+            margin-top: 25px;
+        }
+
+        #totalTax {
+            border: 1px solid #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Task 1 -
+        This is a Program that when you enter an amount of money into the first box and press the
+        calculate VAT button the program will fill in the other 2 boxes with the VAT calculation running
+        at 22% and will give a grand total of the amount entered + VAT -->
+
+    <h1>Task 1</h1>
+    <p class="text">Enter an amount of money in the first box shown and VAT (22%) and Grant Total will be calculated in the second box.</p>
+
+    <div id="wrapper">
+        <form class="vatForm">
+            <label for="numAmount">Please Enter Amount:</label>
+            <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" name="amount" class="boxes" id="numAmount" /> <!--Javascript stops e/E (exponential) being entered which is a numerical symbol-->
+            <!--<button value="totalTax" name="totalTax" onclick="vatTotal()">Calculate VAT</button>-->
+            <input type="button" name="totalTax" id="totalTax" onclick="vatTotal()" value="Calculate VAT" />
+        </form>
+    </div>
+
+    <div id="outputForm">
+        <p class="text">The information shown below is the automatic calculation of the amount entered above.</p>
+        <br />
+        <label class="textBoxes" for="numVat">Original Amount Entered: </label>
+        <input type="text" name="amountOriginal" class="boxes" id="numAmountOrig" readonly /> <!--Readonly means no text can be entered into these boxes by accident.-->
+        <br />
+        <label class="textBoxes" for="numVat">VAT: </label>
+        <input type="text" name="vat" class="boxes" id="numVat" readonly />
+        <br />
+        <label class="textBoxes" for="numTotal">Grand Total:</label>
+        <input type="text" name="total" class="boxes" id="numTotal" readonly /> <br /><br />
+        <br />
+    </div>
+    <!--Input and Output are split so that new figures can be entered into input without the need of resetting the program.-->
+
+    <script>
+        function vatTotal() { //Function Start
+
+            var amount = parseFloat(document.getElementById("numAmount").value); //Get the amount entered
+            var vat = 0.22; // 22% VAT
+
+            var totalVat = parseFloat(amount * vat); //Vat Total
+            var totalAmount = parseFloat(amount + totalVat); //Grand Total
+
+            document.getElementById("numAmountOrig").value = "£" + amount.toFixed(2);
+            document.getElementById("numVat").value = "£" + totalVat.toFixed(2);
+            document.getElementById("numTotal").value = "£" + totalAmount.toFixed(2); //This code sends the calculations to the "input" code in html above.
+        } //Function End
+
+        $('#numAmount').keypress(function (e) { //jQuery keypress event
+            var key = e.which;
+            if (key == 13) // 13 unicode = Enter key
+            {
+                $('input[name = totalTax]').click(); // When Enter is pressed trigger the button.
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

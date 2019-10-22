@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Craig Rodgers">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Task 4</title>
+    <style>
+        * {
+            box-sizing: content-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #money {
+            width: 500px;
+            height: 75px;
+            margin: 50px auto;
+            background-color: #FFFF7A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 25px;
+        }
+
+        .outputForm {
+            width: 500px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: #FFFF7A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 20px;
+        }
+
+        #moneyForm {
+            padding-top: 20px;
+        }
+
+        .text {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .boxes {
+            text-align: center;
+            border: 1px solid #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--Task 4
+        This is a program that asks for an amount to be entered in £GBP which then
+        calculates how many 50p, 20p and 10p's there are in that amount entered.-->
+
+    <h1>Task 4</h1>
+    <p class="text">
+        Please enter an amount below in £'s and press the Calculate button or Enter key.<br />
+        This will output how many 50p's, 20p's and 10p's in the amount that is entered.<br />
+    </p>
+
+    <div id="money">
+        <!--Input Form-->
+        <form id="moneyForm">
+            <label for="pounds">Please enter amount £:</label>
+            <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" name="pounds" id="pounds" required /> <!--Number only - No text can be entered - e/E is disabled too-->
+            <input class="boxes" type="button" name="calcTotal" id="calcTotal" onclick="calcPence()" value="Calculate" />
+        </form>
+    </div>
+
+    <div class="outputForm">
+        <!-- Where JavaScript will output my calculations.-->
+        <br />
+        <p id="fiftyPence" class="pence" name="fiftyPence"></p>
+        <br />
+        <p id="twentyPence" class="pence" name="twentyPence"></p>
+        <br />
+        <p id="tenPence" class="pence" name="tenPence"></p>
+    </div>
+
+    <script>
+        function calcPence() {
+            var pound = parseFloat(document.getElementById("pounds").value); //Take the input data to use in calculations.
+
+            var fifty = Math.floor(pound / 0.5); //Math.floor better support than trunc. Rounds down towards negative infinity.
+            var twenty = Math.floor(pound / 0.2);
+            var ten = Math.floor(pound / 0.1);
+
+            var pounds = Math.floor(pound * 100) / 100;
+            pounds = pounds.toFixed(2); // This calculates the original value entered to exactly 2 decimal places, if 1.999 is entered then £1.99 will show, so wont show £2 at end result.
+
+            if (pounds <= 0) { // Required incase negative numbers entered.
+
+                document.getElementById("fiftyPence").innerHTML = "There are 0 fifty pence pieces in £" + pounds;
+                document.getElementById("twentyPence").innerHTML = "There are 0 twenty pence pieces in £" + pounds;
+                document.getElementById("tenPence").innerHTML = "There are 0 ten pence pieces in £" + pounds;
+            }
+            else { //If 0+ is entered work as it should.
+                document.getElementById("fiftyPence").innerHTML = "There are " + fifty + " fifty pence pieces in £" + pounds;
+                document.getElementById("twentyPence").innerHTML = "There are " + twenty + " twenty pence pieces in £" + pounds;
+                document.getElementById("tenPence").innerHTML = "There are " + ten + " ten pence pieces in £" + pounds;
+            }
+        }
+
+        $('#pounds').keypress(function (e) { //jQuery keypress event
+            var key = e.which;
+            if (key == 13) // 13 Unicode = Enter key
+            {
+                $('input[name = calcTotal]').click(); // When Enter is pressed trigger the button.
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

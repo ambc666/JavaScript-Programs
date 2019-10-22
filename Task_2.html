@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Craig Rodgers">
+    <title>Task 2</title>
+    <style>
+        * {
+            box-sizing: content-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 100px;
+            margin: 50px auto;
+            background-color: #FFC95E;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+        }
+
+        .wrapper2 {
+            width: 500px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: #FFC95E;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 20px;
+        }
+
+        .text {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .textBoxes {
+            width: auto;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 25px;
+        }
+
+        .boxes {
+            text-align: center;
+            border: 1px solid #000;
+            padding: 5px;
+        }
+
+        .text2 {
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        #monday {
+            padding-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!--Task 2 -
+        This is a program when ran will run a poem about the days
+        This programs runs using an IF statement and a comparison operator - Loop through an array. -->
+
+    <h1>Task 2</h1>
+    <div class="wrapper">
+        <p class="text">Click the button below for a poem to be displayed about days.</p>
+        <button class="boxes" value="daysPoem" onclick="daysPoem()">Click Here</button>
+        <button class="boxes" type="reset" id="reset" onclick="resetText()">Reset</button>
+    </div>
+
+    <div class="wrapper2">
+        <p class="text2" id="monday"></p>
+        <p class="text2" id="tuesday"></p>
+        <p class="text2" id="wednesday"></p>
+        <p class="text2" id="thursday"></p>
+        <p class="text2" id="friday"></p>
+    </div>
+
+    <script>
+        function daysPoem() { //Function starts
+
+            var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]; //Array of the days.
+
+            for (i = 0; i < days.length; i++) {
+
+                if (i == 0) {  //0 = Monday
+                    document.getElementById("monday").innerHTML = days[i] + "'s child is fair of face,";
+                }
+                else if (i == 1) { //1 = Tuesday
+                    document.getElementById("tuesday").innerHTML = days[i] + "'s child is full of grace,";
+                }
+                else if (i == 2) { //2 = Wednesday
+                    document.getElementById("wednesday").innerHTML = days[i] + "'s child is full of woe,";
+                }
+                else if (i == 3) { //3 = Thursday
+                    document.getElementById("thursday").innerHTML = days[i] + "'s child is far to go,";
+                }
+                else if (i == 4) { //4 = Friday
+                    document.getElementById("friday").innerHTML = days[i] + "'s child is loving and giving.";
+                }
+            }
+        } //Function ends
+
+        function resetText() {
+            window.location.reload(); // This function reloads the page resetting the function.
+        }
+    </script>
+</body>
+</html>

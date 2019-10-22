@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Craig Rodgers">
+    <title>Task 3</title>
+    <style>
+        #demo {
+            width: 500px;
+            height: 250px;
+            margin: 100px auto;
+            background-color: #83bcf5;
+            color: rgb(32, 44, 193);
+            text-align: center;
+            font-size: 40px;
+            font-family: Tahoma;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 100px;
+            margin: 50px auto;
+            background-color: #D6C4F3;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            padding-bottom: 20px;
+        }
+
+        .text {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .boxes {
+            text-align: center;
+            border: 1px solid #000;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--Task 3
+        This is a program that has 3 buttons and text that says Change Me in the middle of the page.
+        The first button changes the background colour to green and text to yellow.
+        The second button changes the text to say Thank You for Changing Me.
+        The third button resets the program its original state.-->
+
+    <h1>Task 3</h1>
+    <div class="wrapper">
+        <p class="text">
+            The buttons below change the text and background below.<br />
+            These can be reset at anytime by pressing the reset button.
+        </p>
+        <button class="boxes" onclick="changeTextColor()">Change Background and Text Colour</button>
+        <button class="boxes" onclick="changeText()">Display New Text</button>
+        <button class="boxes" type="reset" id="reset" onclick="resetText()">Reset</button>
+    </div>
+
+    <div id="demo">Change Me</div>
+
+    <script>
+        function changeTextColor() {
+            var css = document.getElementById("demo");
+            css.style.cssText = 'color: #fff71a; background-color: #006400;'; //This function changes colours of text and background.
+        }
+
+        function changeText() {
+            document.getElementById("demo").innerHTML = "Thanks for changing me!"; // This function changes the text.
+        }
+
+        function resetText() {
+            window.location.reload(); // This function reloads the page resetting the function.
+        }
+    </script>
+</body>
+</html>

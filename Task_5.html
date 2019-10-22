@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Craig Rodgers">
+    <title>Task 5</title>
+    <style>
+        * {
+            box-sizing: content-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrapper {
+            width: 800px;
+            height: 250px;
+            margin: 50px auto;
+            background-color: #FF8A8A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 18px;
+        }
+
+        #wrapper2 {
+            width: 500px;
+            height: 75px;
+            margin: 50px auto;
+            background-color: #FF8A8A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 20px;
+        }
+
+        #wrapper3 {
+            width: 500px;
+            height: 75px;
+            margin: 50px auto;
+            background-color: #FF8A8A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 20px;
+        }
+
+        #wrapper4 {
+            width: 500px;
+            height: 75px;
+            margin: 50px auto;
+            background-color: #FF8A8A;
+            color: #000;
+            text-align: center;
+            border: 2px solid #000;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 20px;
+        }
+
+        .text {
+            padding: 25px 5px 5px 10px;
+        }
+
+        .textBoxes {
+            width: auto;
+            font-family: 'Adobe Garamond Pro', sans-serif;
+            font-size: 25px;
+        }
+
+        .boxes {
+            text-align: center;
+            border: 1px solid #000;
+            padding: 5px;
+            margin-top: 20px;
+        }
+
+        .text2 {
+            margin-top: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!--Task 5
+        Make a program that functions as a dice, generate a random number from 1 to 20
+        If the number is less than or equal to 10 then display "The number generated "x" is less than 11."
+        If the number is more than 10 then display "The number generated "x" is greater than 10."
+        Each time the generator is clicked a counter is present counting the amount of times it has been clicked.-->
+
+    <h1>Task 5</h1>
+
+    <div id="wrapper">
+        <p class="text">
+            When clicking the Number Generator button below the program will run and display a random number between 1 and 20.
+            <br /> The program should run a statement depending on the number than has been generated.
+            <br /> There is also a counter at the bottom of this page to determine how many times the button has been clicked.
+            <br /> The program can be reset by pressing the Reset button to start again.
+        </p>
+        <button class="boxes" onclick="numGen()">Number Generator</button>
+        <button class="boxes" type="reset" id="reset" onclick="resetText()">Reset</button>
+    </div>
+
+    <div id="wrapper2">
+        <p class="text2" id="dice"></p>
+    </div>
+
+    <div id="wrapper3">
+        <p class="text2" id="outputCalc"></p>
+    </div>
+
+    <div id="wrapper4">
+        <p class="text2" id="countUpdate"></p>
+    </div>
+
+    <script>
+        function numGen() {
+
+            var numRandom = Math.floor((Math.random() * 20) + 1);  //This is the calculation for the dice, 20 being the max number, math.floor meaning whole number, +1 being min of number 1 - So will give 1-20 at random.
+
+            document.getElementById("dice").innerHTML = "The random number generated is: " + numRandom; // This writes it to dice id.
+
+            if (numRandom <= 10) {
+                document.getElementById("outputCalc").innerHTML = "The number " + numRandom + " is less than 11.";
+            }
+            else if (numRandom > 10 || numRandom <= 20) {
+                document.getElementById("outputCalc").innerHTML = "The number " + numRandom + " is greater than 10."; //Conditional statement to do one or the other depending on the dice number.
+            }
+
+            document.getElementById("countUpdate").innerHTML = "A number has been generated " + counter() + " times."; //This writes my local variable to wrapper3
+        }
+
+        var counter = (function () { // local function called counter()
+
+            var count = 0; // Declares my counter starts from 0
+
+            return function () { return count += 1; }
+        })();
+
+        function resetText() {
+            window.location.reload(); // This function reloads the page resetting the function.
+        }
+    </script>
+</body>
+</html>
